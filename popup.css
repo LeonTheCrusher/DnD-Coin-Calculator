@@ -1,0 +1,42 @@
+body {
+    background-image: url("background.png");
+}
+
+.wallet {
+    width: 50%;
+}
+
+form {
+    text-align: center;
+}
+
+[type="submit"] {
+    font-size: 2rem;
+    color: #0F0F0F;
+    background-image: linear-gradient(to right, #8B0000, #A40000);
+    border-color: #650000;
+    border-radius: .5rem;
+}
+
+input:not([type="submit"]) {
+    margin: 10px;
+    background-image: url("background.png");
+    border-color: #8B0000;
+    border-radius: 20%;
+}
+
+[type="buy"] {
+    width: 49%;
+    height: 10%;
+}
+
+[type="sell"] {
+    width: 49%;
+    height: 10%;
+}
+
+
+
+
+
+/* https://www.schemecolor.com/dark-red-and-black.php */
