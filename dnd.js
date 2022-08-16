@@ -73,7 +73,7 @@ function removeCp() {
             balances([cp, sp, ep, gp, pp]);
         }
     } else {
-        return "Too expensive"
+        alert("Too Expensive");
     }
 }
 
@@ -122,7 +122,9 @@ function removeSp() {
             sp = sp - cost
             balances([cp, sp, ep, gp, pp]);
         }
-    } return "Too Expensive"
+    } else {
+        alert("Too Expensive");
+    }
 }
 
 function removeEp() {
@@ -177,7 +179,7 @@ function removeEp() {
             balances([cp, sp, ep, gp, pp]);
         }
     } else {
-        return "Too expensive"
+        alert("Too Expensive");
     }
 }
 
@@ -222,7 +224,7 @@ function removeGp() {
             balances([cp, sp, ep, gp, pp]);
         }
     } else {
-        return "Too Expensive"
+        alert("Too Expensive");
     }
 }
 
@@ -280,7 +282,7 @@ function removePp() {
             balances([cp, sp, ep, gp, pp]);
         }
     } else {
-        return "Too Expensive"
+        alert("Too Expensive");
     }
 }
 
@@ -327,7 +329,8 @@ function balances(wallet) {
     document.getElementById("ppTotal").value = wallet[4];
 }
 
-function minusAll() {
+function minusAll() { 
+    //add a check if cost > wallet
     getTotals();
     removePp();
     removeGp();
