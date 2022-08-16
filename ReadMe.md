@@ -12,3 +12,4 @@ Coin weight cap
 Add coins
 Coin converter
 Auto clear after clicking +/-
+Bank Convert Up
