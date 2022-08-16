@@ -7,24 +7,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="popup.css">
     <title>DnD Coin Calculator</title>
-    <script src="codes.js"></script>
+    <script src="dnd.js"></script>
 </head>
 
-<body>
+<body onLoad="load()">
     <button type="buy">Buy</button>
     <button type="sell">Sell</button>
     <div class="wallet">
         <form>
-            <label for="cp">CP:</label>
-            <input type="text" id="cp" name="cp"><br>
-            <label for="sp">SP:</label>
-            <input type="text" id="sp" name="sp"><br>
-            <label for="ep">EP:</label>
-            <input type="text" id="ep" name="ep"><br>
-            <label for="gp">GP:</label>
-            <input type="text" id="gp" name="gp"><br>
-            <label for="pp">PP:</label>
-            <input type="text" id="pp" name="pp"><br>
+            <!--copper-->
+            <div class="cp currency">
+                <label for="cp">CP:</label>
+                <input type="number" id="cp" name="cp" value="69">
+            </div>
+            <!--silver-->
+            <div class="sp currency">
+                <label for="sp">SP:</label>
+                <input type="number" id="sp" name="sp">
+            </div>
+            <!--electrum-->
+            <div class="ep currency">
+                <label for="ep">EP:</label>
+                <input type="text" id="ep" name="ep">
+            </div>
+            <!--gold-->
+            <div class="gp currency">
+                <label for="gp">GP:</label>
+                <input type="text" id="gp" name="gp">
+            </div>
+            <!--platinum-->
+            <div class="pp currency">
+                <label for="pp">PP:</label>
+                <input type="number" id="pp" name="pp">
+                <button class="pp">Add PP</button>
+                <button class="pp" onclick="minusPP()">Minus PP</button>
+            </div>
+
+            <br>
+
             <input type="submit" value="Submit">
         </form>
     </div>

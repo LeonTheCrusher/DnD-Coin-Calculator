@@ -1,5 +1,5 @@
-var cp = 98;
-var sp = 631;
+var cp = 1000;
+var sp = 0;
 var ep = 0;
 var gp = 0;
 var pp = 0;
@@ -213,9 +213,10 @@ function removeGp(cost) {
 
 function removePp(cost) {
     if (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp >= cost * 1000) {
+        // console.log("butts")
         if (cp / 1000 >= cost) {
-            cp = cp - cost * 100
-            gp = cost + gp
+            cp = cp - cost * 1000
+            pp = cost + pp
         } else if ((sp / 100) + cp / 1000 >= cost) {
             while (sp / 100 < cost) {
                 cp -= 10
@@ -226,6 +227,7 @@ function removePp(cost) {
                 pp += 1
             }
         } else if (ep / 20 + sp / 100 + cp / 1000 >= cost) {
+            console.log("butts3");
             while (ep / 20 + sp / 100 < cost) {
                 cp -= 10
                 sp += 1
