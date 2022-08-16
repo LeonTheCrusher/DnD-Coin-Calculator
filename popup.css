@@ -2,6 +2,15 @@ body {
     background-image: url("background.png");
 }
 
+.add {
+    background-color: green;
+}
+
+.minus {
+    background-color: red;
+}
+
+
 /* .wallet {
     width: 50%;
 }

@@ -11,3 +11,4 @@ Weight all coins * 50 coins = 1lbs
 Coin weight cap
 Add coins
 Coin converter
+Auto clear after clicking +/-

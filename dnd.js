@@ -284,6 +284,41 @@ function removePp() {
     }
 }
 
+function addCp() {
+    getTotals();
+    let cost = parseInt(document.getElementById("cp").value, 10);
+    cp = cp + cost
+    balances([cp, sp, ep, gp, pp]);
+}
+
+function addSp() {
+    getTotals();
+    let cost = parseInt(document.getElementById("sp").value, 10);
+    sp = sp + cost
+    balances([cp, sp, ep, gp, pp]);
+}
+
+function addEp() {
+    getTotals();
+    let cost = parseInt(document.getElementById("ep").value, 10);
+    ep = ep + cost
+    balances([cp, sp, ep, gp, pp]);
+}
+
+function addGp() {
+    getTotals();
+    let cost = parseInt(document.getElementById("gp").value, 10);
+    gp = gp + cost
+    balances([cp, sp, ep, gp, pp]);
+}
+
+function addPp() {
+    getTotals();
+    let cost = parseInt(document.getElementById("pp").value, 10);
+    pp = pp + cost
+    balances([cp, sp, ep, gp, pp]);
+}
+
 function balances(wallet) {
     document.getElementById("cpTotal").value = wallet[0];
     document.getElementById("spTotal").value = wallet[1];
@@ -299,6 +334,15 @@ function minusAll() {
     removeEp();
     removeSp();
     removeCp();
+}
+
+function addAll() {
+    getTotals();
+    addPp();
+    addGp();
+    addEp();
+    addSp();
+    addCp();
 }
 
 // function load() {
