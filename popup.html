@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="popup.css">
-    <title>DnD Coin Calculator</title>
+    <title>DnD Coin Calculator</title> 
     <script src="dnd.js"></script>
 </head>
 
@@ -17,35 +17,50 @@
         <form>
             <!--copper-->
             <div class="cp currency">
-                <label for="cp">CP:</label>
-                <input type="number" id="cp" name="cp" value="69">
+                <label for="cp" id="cpAmount">CP:</label>
+                <input type="number" id="cpTotal" name="cpTotal" value="0">
+                <input type="number" id="cp" name="cp" onclick="removeCp">
+                <button class="cp">Add CP</button>
+                <button class="cp" type="button" onClick="removeCp()">Minus CP</button>
             </div>
             <!--silver-->
             <div class="sp currency">
-                <label for="sp">SP:</label>
+                <label for="sp" id="spAmount">SP:</label>
+                <input type="number" id="spTotal" name="spTotal" value="0">
                 <input type="number" id="sp" name="sp">
+                <button class="sp">Add SP</button>
+                <button class="sp" type="button" onClick="removeSp()">Minus SP</button>
             </div>
             <!--electrum-->
             <div class="ep currency">
-                <label for="ep">EP:</label>
-                <input type="text" id="ep" name="ep">
+                <label for="ep" id="epAmount">EP:</label>
+                <input type="number" id="epTotal" name="epTotal" value="0">
+                <input type="number" id="ep" name="ep">
+                <button class="ep">Add EP</button>
+                <button class="ep" type="button" onClick="removeEp()">Minus EP</button>
             </div>
             <!--gold-->
             <div class="gp currency">
-                <label for="gp">GP:</label>
-                <input type="text" id="gp" name="gp">
+                <label for="gp" id="gpAmount">GP:</label>
+                <input type="number" id="gpTotal" name="gpTotal" value="0">
+                <input type="number" id="gp" name="gp">
+                <button class="gp">Add GP</button>
+                <button class="gp" type="button" onClick="removeGp()">Minus GP</button>
             </div>
             <!--platinum-->
             <div class="pp currency">
-                <label for="pp">PP:</label>
+                <label for="pp" id="ppAmount">PP:</label>
+                <input type="number" id="ppTotal" name="ppTotal" value="0">
+                <!-- Add onChange event to plus/minus input to show live results -->
                 <input type="number" id="pp" name="pp">
                 <button class="pp">Add PP</button>
-                <button class="pp" onclick="minusPP()">Minus PP</button>
+                <button class="pp" type="button" onClick="removePp()">Minus PP</button>
             </div>
 
             <br>
 
-            <input type="submit" value="Submit">
+
+            <button type="button" onClick="minusAll()">Minus All</button>
         </form>
     </div>
 </body>

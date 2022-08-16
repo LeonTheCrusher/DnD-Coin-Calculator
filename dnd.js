@@ -1,21 +1,31 @@
-var cp = 1000;
-var sp = 0;
-var ep = 0;
-var gp = 0;
-var pp = 0;
+let cp;
+let sp;
+let ep;
+let gp;
+let pp;
 
-function removeCp(cost) {
+function getTotals() {
+    cp = parseInt(document.getElementById("cpTotal").value,10);
+    sp = parseInt(document.getElementById("spTotal").value,10);
+    ep = parseInt(document.getElementById("epTotal").value,10);
+    gp = parseInt(document.getElementById("gpTotal").value,10);
+    pp = parseInt(document.getElementById("ppTotal").value,10);
+}
+
+function removeCp() {
+    getTotals();
+    let cost = parseInt(document.getElementById("cp").value, 10);
     if (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp) {
         if (cp >= cost) {
             cp = cp - cost
-            return [cp, sp, ep, gp, pp]
+            balances([cp, sp, ep, gp, pp]);
         } else if (sp * 10 + cp >= cost) {
             for (i = sp; cp < cost; i--) {
                 sp = sp - 1
                 cp = cp + 10
             }
             cp = cp - cost
-            return [cp, sp, ep, gp, pp]
+            balances([cp, sp, ep, gp, pp]);
         } else if (ep * 50 + sp * 10 + cp >= cost) {
             for (i = ep; sp * 10 + cp < cost; i--) {
                 ep = ep - 1
@@ -26,7 +36,7 @@ function removeCp(cost) {
                 cp = cp + 10
             }
             cp = cp - cost
-            return [cp, sp, ep, gp, pp]
+            balances([cp, sp, ep, gp, pp])
         } else if (gp * 100 + ep * 50 + sp * 10 + cp >= cost) {
             for (i = gp; ep * 50 + sp * 10 + cp < cost; i--) {
                 gp = gp - 1
@@ -41,7 +51,7 @@ function removeCp(cost) {
                 cp = cp + 10
             }
             cp = cp - cost
-            return [cp, sp, ep, gp, pp]
+            balances([cp, sp, ep, gp, pp])
         } else if (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp >= cost) {
             for (i = pp; gp * 100 + ep * 50 + sp * 10 + cp < cost; i--) {
                 pp = pp - 1
@@ -60,14 +70,16 @@ function removeCp(cost) {
                 cp = cp + 10
             }
             cp = cp - cost
-            return [cp, sp, ep, gp, pp]
+            balances([cp, sp, ep, gp, pp]);
         }
     } else {
         return "Too expensive"
     }
 }
 
-function removeSp(cost) {
+function removeSp() {
+    getTotals();
+    let cost = parseInt(document.getElementById("sp").value, 10);
     if (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp >= cost * 10) {
         if (cp / 10 >= cost) {
             cp = cp - cost * 10
@@ -75,14 +87,14 @@ function removeSp(cost) {
         }
         if (sp >= cost) {
             sp = sp - cost
-            return [cp, sp, ep, gp, pp]
+            balances([cp, sp, ep, gp, pp])
         } else if (ep * 5 + sp >= cost) {
             for (i = ep; sp < cost; i--) {
                 ep = ep - 1
                 sp = sp + 5
             }
             sp = sp - cost
-            return [cp, sp, ep, gp, pp]
+            balances([cp, sp, ep, gp, pp])
         } else if (gp * 10 + ep * 5 + sp >= cost) {
             for (i = gp; ep * 5 + sp < cost; i--) {
                 gp = gp - 1
@@ -93,7 +105,7 @@ function removeSp(cost) {
                 sp = sp + 5
             }
             sp = sp - cost
-            return [cp, sp, ep, gp, pp]
+            balances([cp, sp, ep, gp, pp])
         } else if (pp * 100 + gp * 10 + ep * 5 + sp >= cost) {
             for (i = pp; gp * 10 + ep * 5 + sp < cost; i--) {
                 pp = pp - 1
@@ -108,12 +120,14 @@ function removeSp(cost) {
                 sp = sp + 5
             }
             sp = sp - cost
-            return [cp, sp, ep, gp, pp]
+            balances([cp, sp, ep, gp, pp]);
         }
     } return "Too Expensive"
 }
 
-function removeEp(cost) {
+function removeEp() {
+    getTotals();
+    let cost = parseInt(document.getElementById("ep").value, 10);
     if (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp >= cost * 50) {
         if (cp / 50 >= cost) { //check if enough copper on its own
             cp = cp - cost * 50
@@ -142,14 +156,14 @@ function removeEp(cost) {
         }
         if (ep >= cost) { //electrum check
             ep = ep - cost
-            return [cp, sp, ep, gp, pp]
+            balances([cp, sp, ep, gp, pp])
         } else if (gp * 2 + ep >= cost) { //gold check
             for (i = gp; ep < cost; i--) {
                 gp = gp - 1
                 ep = ep + 2
             }
             ep = ep - cost
-            return [cp, sp, ep, gp, pp]
+            balances([cp, sp, ep, gp, pp])
         } else if (pp * 20 + gp * 2 + ep >= cost) { //plat check
             for (i = pp; gp * 2 + ep < cost; i--) {
                 pp = pp - 1
@@ -160,14 +174,16 @@ function removeEp(cost) {
                 ep = ep + 2
             }
             ep = ep - cost
-            return [cp, sp, ep, gp, pp]
+            balances([cp, sp, ep, gp, pp]);
         }
     } else {
         return "Too expensive"
     }
 }
 
-function removeGp(cost) {
+function removeGp() {
+    getTotals();
+    let cost = parseInt(document.getElementById("gp").value, 10);
     if (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp >= cost * 100) {
         if (cp / 100 >= cost) {
             cp = cp - cost * 100
@@ -182,8 +198,7 @@ function removeGp(cost) {
                 gp += 1
             }
         } else if (ep / 2 + sp / 10 + cp / 100 >= cost) {
-            while (sp / 10 + ep / 2 < cost) {
-                cp -= 10
+            while (sp / 10 + ep / 2 < cost) {onLoad="load()"
                 sp += 1
             }
             while (ep / 2 < cost) {
@@ -197,21 +212,23 @@ function removeGp(cost) {
         }
         if (gp >= cost) { //gold check
             gp = gp - cost
-            return [cp, sp, ep, gp, pp]
+            balances([cp, sp, ep, gp, pp])
         } else if (pp * 10 + gp >= cost) { //gold check
             for (i = pp; gp < cost; i--) {
                 pp = pp - 1
                 gp = gp + 10
             }
             gp = gp - cost
-            return [cp, sp, ep, gp, pp]
+            balances([cp, sp, ep, gp, pp]);
         }
     } else {
         return "Too Expensive"
     }
 }
 
-function removePp(cost) {
+function removePp() {
+    getTotals();
+    let cost = parseInt(document.getElementById("pp").value, 10);
     if (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp >= cost * 1000) {
         // console.log("butts")
         if (cp / 1000 >= cost) {
@@ -260,15 +277,34 @@ function removePp(cost) {
         }
         if (pp >= cost) {
             pp = pp - cost
-            return [cp, sp, ep, gp, pp]
+            balances([cp, sp, ep, gp, pp]);
         }
     } else {
         return "Too Expensive"
     }
 }
 
-// console.log(removeCp(1));
-// console.log(removeSp(1));
-// console.log(removeEp(1));
-// console.log(removeGp(1));
-// console.log(removePp(1));
+function balances(wallet) {
+    document.getElementById("cpTotal").value = wallet[0];
+    document.getElementById("spTotal").value = wallet[1];
+    document.getElementById("epTotal").value = wallet[2];
+    document.getElementById("gpTotal").value = wallet[3];
+    document.getElementById("ppTotal").value = wallet[4];
+}
+
+function minusAll() {
+    getTotals();
+    removePp();
+    removeGp();
+    removeEp();
+    removeSp();
+    removeCp();
+}
+
+// function load() {
+//     // console.log(removeCp(1));
+//     // console.log(removeSp(1));
+//     // console.log(removeEp(1));
+//     // console.log(removeGp(1));
+//     console.log(removePp(1));
+// }
