@@ -10,40 +10,40 @@
     <script src="dnd.js"></script>
 </head>
 
-<body onLoad="load()">
+<body>
     <div class="wallet">
         <form>
             <!--copper-->
             <div class="cp currency">
                 <label for="cp" id="cpAmount">CP:</label>
                 <input type="number" id="cpTotal" name="cpTotal" value="0">
-                <input type="number" id="cp" name="cp" onclick="removeCp">
-                <button class="add" class="cp" type="button" onClick="addCp()">Add CP</button>
-                <button class="minus" class="cp" type="button" onClick="removeCp()">Minus CP</button>
+                <input type="number" id="cp" name="cp">
+                <button class="add cp" id="addCp" type="button">Add CP</button>
+                <button class="minus cp" id="minusCp" type="button">Minus CP</button>
             </div>
             <!--silver-->
             <div class="sp currency">
                 <label for="sp" id="spAmount">SP:</label>
                 <input type="number" id="spTotal" name="spTotal" value="0">
                 <input type="number" id="sp" name="sp">
-                <button class="add" class="sp" type="button" onClick="addSp()">Add SP</button>
-                <button class="minus" class="sp" type="button" onClick="removeSp()">Minus SP</button>
+                <button class="add sp" id="addSp" type="button">Add SP</button>
+                <button class="minus sp" id="minusSp" type="button">Minus SP</button>
             </div>
             <!--electrum-->
             <div class="ep currency">
                 <label for="ep" id="epAmount">EP:</label>
                 <input type="number" id="epTotal" name="epTotal" value="0">
                 <input type="number" id="ep" name="ep">
-                <button class="add" class="ep" type="button" onClick="addEp()">Add EP</button>
-                <button class="minus" class="ep" type="button" onClick="removeEp()">Minus EP</button>
+                <button class="add ep" id="addEp" type="button">Add EP</button>
+                <button class="minus ep" id="minusEp" type="button">Minus EP</button>
             </div>
             <!--gold-->
             <div class="gp currency">
                 <label for="gp" id="gpAmount">GP:</label>
                 <input type="number" id="gpTotal" name="gpTotal" value="0">
                 <input type="number" id="gp" name="gp">
-                <button class="add" class="gp" type="button" onClick="addGp()">Add GP</button>
-                <button class="minus" class="gp" type="button" onClick="removeGp()">Minus GP</button>
+                <button class="add gp" id="addGp" type="button">Add GP</button>
+                <button class="minus gp" id="minusGp" type="button">Minus GP</button>
             </div>
             <!--platinum-->
             <div class="pp currency">
@@ -51,15 +51,15 @@
                 <input type="number" id="ppTotal" name="ppTotal" value="0">
                 <!-- Add onChange event to plus/minus input to show live results -->
                 <input type="number" id="pp" name="pp">
-                <button class="add" class="pp" type="button" onClick="addPp()" >Add PP</button>
-                <button class="minus" class="pp" type="button" onClick="removePp()">Minus PP</button>
+                <button class="add pp" id="addPp" type="button">Add PP</button>
+                <button class="minus pp" id="minusPp" type="button">Minus PP</button>
             </div>
 
             <br>
 
 
-            <button type="button" onClick="addAll()">Add All</button>
-            <button type="button" onClick="minusAll()">Minus All</button>
+            <button type="button" id="addAll">Add All</button>
+            <button type="button" id="minusAll">Minus All</button>
         </form>
     </div>
 </body>

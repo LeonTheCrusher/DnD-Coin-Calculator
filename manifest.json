@@ -1,6 +1,6 @@
 {
     "name": "DnD Coin Calculator",
-    "desricption": "Helps you calculator your coins in DnD",
+    "description": "Helps you calculator your coins in DnD",
     "version": "1.0",
     "manifest_version": 3,
     "background": {
