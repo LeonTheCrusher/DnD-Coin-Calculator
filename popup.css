@@ -3,6 +3,8 @@ body {
     background-color: #0F0F0F;
     font-size: 1.5rem;
     color: #A40000;
+    padding: 20px 50px;
+    border: 2px solid #8B0000;
 }
 
 
@@ -28,13 +30,11 @@ body {
 img {
     height: 32px;
     width: 32px;
-    flex-basis: 32px;
 }
 
 .currency input {
     text-align: center;
     width: 1.5em;
-    
 }
 
 input[type=number]::-webkit-inner-spin-button, 
@@ -49,6 +49,10 @@ h1 {
     font-weight: normal;
     text-align: center;
     text-decoration: underline;
+}
+
+label {
+    width: 4em;
 }
 
 
