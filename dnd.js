@@ -4,10 +4,7 @@ let ep;
 let gp;
 let pp;
 
-console.log('outside onload');
-
 document.addEventListener("DOMContentLoaded", function() {
-  console.log('hi');
   // remove event handlers
   document.getElementById("minusCp").addEventListener("click", removeCp);
   document.getElementById("minusSp").addEventListener("click", removeSp);
@@ -34,7 +31,6 @@ function getTotals() {
 }
 
 function removeCp() {
-  console.log('in removeCp');
   getTotals();
   let cost = parseInt(document.getElementById("cp").value, 10);
   if (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp) {
@@ -255,7 +251,6 @@ function removePp() {
   getTotals();
   let cost = parseInt(document.getElementById("pp").value, 10);
   if (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp >= cost * 1000) {
-    // console.log("butts")
     if (cp / 1000 >= cost) {
       cp = cp - cost * 1000
       pp = cost + pp
@@ -269,7 +264,6 @@ function removePp() {
         pp += 1
       }
     } else if (ep / 20 + sp / 100 + cp / 1000 >= cost) {
-      console.log("butts3");
       while (ep / 20 + sp / 100 < cost) {
         cp -= 10
         sp += 1
