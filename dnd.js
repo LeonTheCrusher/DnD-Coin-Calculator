@@ -98,10 +98,15 @@ function removeCp() {
 function removeSp() {
   getTotals();
   let cost = parseInt(document.getElementById("sp").value, 10);
-  if (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp >= cost * 10) {
+  if (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp >= cost / 10) {
     if (cp / 10 >= cost) {
       cp = cp - cost * 10
       sp = cost + sp
+    } else if (cp / 10 + sp >= cost) {
+      while (sp < cost & cp > 9) {
+        cp -= 10
+        sp++
+      }
     }
     if (sp >= cost) {
       sp = sp - cost
@@ -148,16 +153,29 @@ function removeSp() {
 function removeEp() {
   getTotals();
   let cost = parseInt(document.getElementById("ep").value, 10);
-  if (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp >= cost * 50) {
+  console.log("total: " + (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp) / 50)
+  console.log("cost: " + cost);
+  if (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp >= cost / 50) {
     if (cp / 50 >= cost) { //check if enough copper on its own
       cp = cp - cost * 50
       ep = ep + cost
-    } else if ((cp / 50) + (sp / 5) >= cost) { //checks if cp + silver is enough
-      while (sp / 5 < cost) {
+    } else if ((ep + sp / 5 + cp / 50) >= cost) { 
+      while (cp / 50 + sp / 5 + ep >= cost & cp > 9) {
+        cp = cp - 10
+        sp = sp + 1
+      }
+      while (sp / 5 + ep >= cost & sp > 4) {
+        sp -= 5
+        ep += 1
+      }
+    } else if ((sp / 5 + cp / 50) >= cost) { //checks if cp + silver is enough
+      console.log(cp/50)
+      console.log(sp/5)
+      while (cp / 50 + sp / 5 >= cost & cp > 9) {
         cp -= 10
         sp += 1
       }
-      while (ep < cost) {
+      while (sp / 5 >= cost & sp > 4) {
         sp -= 5
         ep += 1
       }
@@ -204,29 +222,44 @@ function removeEp() {
 function removeGp() {
   getTotals();
   let cost = parseInt(document.getElementById("gp").value, 10);
-  if (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp >= cost * 100) {
+  console.log("total: " + (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp) / 100)
+  console.log("cost: " + cost)
+  if (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp >= cost / 100) {
     if (cp / 100 >= cost) {
       cp = cp - cost * 100
       gp = cost + gp
     } else if ((sp / 10) + cp / 100 >= cost) {
-      while (sp / 10 < cost) {
+      while (sp / 10 < cost & cp > 9) {
         cp -= 10
         sp += 1
       }
-      while (gp < cost) {
+      while (gp < cost & sp > 9) {
         sp -= 10
         gp += 1
       }
     } else if (ep / 2 + sp / 10 + cp / 100 >= cost) {
-      while (sp / 10 + ep / 2 < cost) {
-        onLoad = "load()"
+      while (sp / 10 + ep / 2 < cost & cp > 9) {
+        cp -= 10
         sp += 1
       }
-      while (ep / 2 < cost) {
+      while (ep / 2 < cost & sp > 4) {
         sp -= 5
         ep += 1
       }
-      while (gp < cost) {
+      while (gp < cost & ep > 1) {
+        ep -= 2
+        gp += 1
+      }
+    } else if (gp + ep / 2 + sp / 10 + cp / 100 >= cost) {
+      while (cp / 100 + sp / 10 + ep / 2 < cost & cp > 9) {
+        cp -= 10
+        sp += 1
+      }
+      while (sp / 10 + ep / 2 < cost & sp > 4) {
+        sp -= 5
+        ep += 1
+      }
+      while (ep / 2 < cost & ep > 1) {
         ep -= 2
         gp += 1
       }
@@ -250,46 +283,71 @@ function removeGp() {
 function removePp() {
   getTotals();
   let cost = parseInt(document.getElementById("pp").value, 10);
-  if (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp >= cost * 1000) {
+  console.log("total: " + (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp) / 1000)
+  console.log("cost: " + cost)
+  if (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp >= cost / 1000) {
+    console.log("here0")
     if (cp / 1000 >= cost) {
+      console.log("here1")
       cp = cp - cost * 1000
       pp = cost + pp
     } else if ((sp / 100) + cp / 1000 >= cost) {
-      while (sp / 100 < cost) {
+      console.log("here2")
+      while (sp / 100 < cost & cp > 9) {
         cp -= 10
         sp += 1
       }
-      while (pp < cost) {
+      while (pp < cost & sp > 99) {
         sp -= 100
         pp += 1
       }
     } else if (ep / 20 + sp / 100 + cp / 1000 >= cost) {
-      while (ep / 20 + sp / 100 < cost) {
+      console.log("here3")
+      while (ep / 20 + sp / 100 < cost & cp > 9) {
         cp -= 10
         sp += 1
       }
-      while (ep / 20 < cost) {
+      while (ep / 20 < cost & sp > 4) {
         sp -= 5
         ep += 1
       }
-      while (pp < cost) {
+      while (pp < cost & ep > 19) {
         ep -= 20
         pp += 1
       }
     } else if (gp / 10 + ep / 20 + sp / 100 + cp / 1000 >= cost) {
-      while (gp / 10 + ep / 20 + sp / 100 < cost) {
+      console.log("here4")
+      while (gp / 10 + ep / 20 + sp / 100 < cost & cp > 9) {
         cp -= 10
         sp += 1
       }
-      while (gp / 10 + ep / 20 < cost) {
+      while (gp / 10 + ep / 20 < cost & sp > 4) {
         sp -= 5
         ep += 1
       }
-      while (gp / 10 < cost) {
+      while (gp / 10 < cost & ep > 1) {
         ep -= 2
         gp += 1
       }
-      while (pp < cost) {
+      while (pp < cost & gp > 9) {
+        gp -= 10
+        pp += 1
+      }
+    } else if (pp + gp / 10 + ep / 20 + sp / 100 + cp / 1000 >= cost) {
+      console.log("here5")
+      while (pp + gp / 10 + ep / 20 + sp / 100 < cost & cp > 9) {
+        cp -= 10
+        sp += 1
+      }
+      while (pp+ gp / 10 + ep / 20 < cost & sp > 4) {
+        sp -= 5
+        ep += 1
+      }
+      while (pp + gp / 10 < cost & ep > 1) {
+        ep -= 2
+        gp += 1
+      }
+      while (pp < cost & gp > 9) {
         gp -= 10
         pp += 1
       }
