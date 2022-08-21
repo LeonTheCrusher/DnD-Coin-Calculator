@@ -4,6 +4,22 @@ let ep;
 let gp;
 let pp;
 
+let userWallet = {
+  "Copper": 0,
+  "Silver": 0,
+  "Electrum": 0,
+  "Gold": 0,
+  "Platinum": 0
+}
+
+let conversionTable = {
+  "Copper": 1,
+  "Silver": 10,
+  "Electrum": 50,
+  "Gold": 100,
+  "Platinum": 1000
+}
+
 document.addEventListener("DOMContentLoaded", function() {
   // remove event handlers
   document.getElementById("minusCp").addEventListener("click", removeCp);
@@ -22,6 +38,8 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("addAll").addEventListener("click", addAll);
 });
 
+
+// wallet?
 function getTotals() {
   cp = parseInt(document.getElementById("cpTotal").value, 10);
   sp = parseInt(document.getElementById("spTotal").value, 10);
@@ -30,11 +48,35 @@ function getTotals() {
   pp = parseInt(document.getElementById("ppTotal").value, 10);
 }
 
+function removeBitches() {
+  //totals is the wallet
+  getTotals();
+  //change [0] for variable later
+  let coin = Object.keys(userWallet)[0]
+
+  //0 until someone changes it
+  // cost is what they are minusing from the getTotals()
+  let cost = parseInt(document.getElementById(coin).value, 10) * conversionTable[coin];
+
+  let totalCopper = (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp);
+  //if copper base of everything then do more:
+  // say 100 cp, 10 sp remove 15sp  = 50 cp == 5s?
+  // looking for 5sp at the end
+  if (totalCopper >= cost) {
+    // ^ after you check if you have enough money for the coin
+    // remove everything starting from copper till you have amount
+    let totalCopperAmount = totalCopper - cost;
+  } else {
+    alert("Too Expensive");
+  }
+
+}
+
 function removeCp() {
   getTotals();
   let cost = parseInt(document.getElementById("cp").value, 10);
   if (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp) {
-    if (cp >= cost) {
+    if (cp > cost) {
       cp = cp - cost
       balances([cp, sp, ep, gp, pp]);
     } else if (sp * 10 + cp >= cost) {
@@ -100,7 +142,9 @@ function removeSp() {
   let cost = parseInt(document.getElementById("sp").value, 10);
   if (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp >= cost / 10) {
     if (cp / 10 >= cost) {
+      // cp -= 10
       cp = cp - cost * 10
+      // sp += cost
       sp = cost + sp
     } else if (cp / 10 + sp >= cost) {
       while (sp < cost & cp > 9) {
@@ -153,11 +197,11 @@ function removeSp() {
 function removeEp() {
   getTotals();
   let cost = parseInt(document.getElementById("ep").value, 10);
-  console.log("total: " + (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp) / 50)
-  console.log("cost: " + cost);
   if (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp >= cost / 50) {
     if (cp / 50 >= cost) { //check if enough copper on its own
+      // ep = cp - (cost )
       cp = cp - cost * 50
+      // ep = 0 + cost
       ep = ep + cost
     } else if ((ep + sp / 5 + cp / 50) >= cost) { 
       while (cp / 50 + sp / 5 + ep >= cost & cp > 9) {
@@ -169,8 +213,6 @@ function removeEp() {
         ep += 1
       }
     } else if ((sp / 5 + cp / 50) >= cost) { //checks if cp + silver is enough
-      console.log(cp/50)
-      console.log(sp/5)
       while (cp / 50 + sp / 5 >= cost & cp > 9) {
         cp -= 10
         sp += 1
@@ -222,8 +264,6 @@ function removeEp() {
 function removeGp() {
   getTotals();
   let cost = parseInt(document.getElementById("gp").value, 10);
-  console.log("total: " + (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp) / 100)
-  console.log("cost: " + cost)
   if (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp >= cost / 100) {
     if (cp / 100 >= cost) {
       cp = cp - cost * 100
@@ -283,16 +323,11 @@ function removeGp() {
 function removePp() {
   getTotals();
   let cost = parseInt(document.getElementById("pp").value, 10);
-  console.log("total: " + (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp) / 1000)
-  console.log("cost: " + cost)
   if (pp * 1000 + gp * 100 + ep * 50 + sp * 10 + cp >= cost / 1000) {
-    console.log("here0")
     if (cp / 1000 >= cost) {
-      console.log("here1")
       cp = cp - cost * 1000
       pp = cost + pp
     } else if ((sp / 100) + cp / 1000 >= cost) {
-      console.log("here2")
       while (sp / 100 < cost & cp > 9) {
         cp -= 10
         sp += 1
@@ -302,7 +337,6 @@ function removePp() {
         pp += 1
       }
     } else if (ep / 20 + sp / 100 + cp / 1000 >= cost) {
-      console.log("here3")
       while (ep / 20 + sp / 100 < cost & cp > 9) {
         cp -= 10
         sp += 1
@@ -316,7 +350,6 @@ function removePp() {
         pp += 1
       }
     } else if (gp / 10 + ep / 20 + sp / 100 + cp / 1000 >= cost) {
-      console.log("here4")
       while (gp / 10 + ep / 20 + sp / 100 < cost & cp > 9) {
         cp -= 10
         sp += 1
@@ -334,7 +367,6 @@ function removePp() {
         pp += 1
       }
     } else if (pp + gp / 10 + ep / 20 + sp / 100 + cp / 1000 >= cost) {
-      console.log("here5")
       while (pp + gp / 10 + ep / 20 + sp / 100 < cost & cp > 9) {
         cp -= 10
         sp += 1
@@ -424,10 +456,3 @@ function addAll() {
   addCp();
 }
 
-// function load() {
-//     // console.log(removeCp(1));
-//     // console.log(removeSp(1));
-//     // console.log(removeEp(1));
-//     // console.log(removeGp(1));
-//     console.log(removePp(1));
-// }
