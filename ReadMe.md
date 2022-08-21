@@ -23,3 +23,7 @@ Bank Convert Up
 Local storage
 
 Transaction history
+
+Gems
+
+Electrum Toggle
