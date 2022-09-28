@@ -29,13 +29,15 @@ var transaction = [0,0,0,0,0]
 
 var userWallet = [0,0,0,130,0]
   
-var conversionTable = [1,10,50,100,1000]
+var conversionTable = [1,10,50,100,1000]g
 
 var costSum = [0,0,0,0,0]
 
 var transactionSum = [0,0,0,0,0]
 
 var walletSum = [0,0,0,0,0]
+
+//BIG OL TIDDIES!!!!
 
 function transferBitches() {
     let i = 0
