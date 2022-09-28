@@ -37,7 +37,6 @@ var transactionSum = [0,0,0,0,0]
 
 var walletSum = [0,0,0,0,0]
 
-//BIG OL TIDDIES!!!!
 
 function transferBitches() {
     let i = 0
